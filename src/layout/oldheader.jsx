@@ -28,9 +28,9 @@ export default function Index() {
 
   const handleSignUp = () => {
     const keycloak = new Keycloak({
-      url: process.env.REACT_APP_KEYCLOAK_URL,
-      realm: process.env.REACT_APP_KEYCLOAK_REALM,
-      clientId: process.env.REACT_APP_KEYCLOAK_CLIENT,
+      url: 'http://localhost:4000',
+      realm: 'DataBrew-LLC',
+      clientId: 'myclient',
        // Update with your application's URL
     });
 
@@ -123,21 +123,11 @@ export default function Index() {
               </li>
               <li>
               <button
-               to="/timesheet"
                   onClick={handleSignUp}
                   className="font-poppins font-medium text-blue uppercase hover:text-pink transition-colors duration-300"
                 >
-                  Employee Sign UP
+                  Sign Up
                 </button>
-              </li>
-              <li>
-                <Link
-                  to="/timesheet"
-                  onClick={routeChange}
-                  className="font-poppins font-medium text-blue uppercase hover:text-pink transition-colors duration-300"
-                >
-                  
-                </Link>
               </li>
             </ul>
           </nav>
