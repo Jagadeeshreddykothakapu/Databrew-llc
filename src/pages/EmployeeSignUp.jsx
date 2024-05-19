@@ -1,24 +1,23 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Keycloak from 'keycloak-js';
+import keycloak from '../keycloak';  // Use the initialized keycloak instance
 
 export default function EmployeeSignUp() {
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const handleSignUp = () => {
-    const keycloak = new Keycloak({
-      url: process.env.REACT_APP_KEYCLOAK_URL,
-      realm: process.env.REACT_APP_KEYCLOAK_REALM,
-      clientId: process.env.REACT_APP_KEYCLOAK_CLIENT,
-      redirectUri: 'http://localhost:3000/timesheet', // Update with your application's URL
-    });
-
-    keycloak.init({ onLoad: 'login-required' }).then((authenticated) => {
+    keycloak.init({ 
+      onLoad: 'login-required', 
+      redirectUri: window.location.origin + '/timesheet'  // Dynamic redirect URI
+    }).then((authenticated) => {
       if (authenticated) {
-        history.push('/timesheet');
+        navigate('/timesheet');
       } else {
-        history.push('/?error=login_failed');
+        navigate('/?error=login_failed');
       }
+    }).catch((error) => {
+      console.error('Keycloak initialization error:', error);
+      navigate('/?error=login_failed');
     });
   };
 
