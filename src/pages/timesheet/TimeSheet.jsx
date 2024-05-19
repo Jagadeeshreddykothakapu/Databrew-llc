@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
-function Timesheet() {
+function TimeSheet() {
     const [timesheet, setTimesheet] = useState({
         name: '',
         email: '',
@@ -31,12 +32,16 @@ function Timesheet() {
         }
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("Submitted Timesheet: ", timesheet);
-        alert('Timesheet submitted successfully!');
-        // Store in local storage or send to a backend server
-        localStorage.setItem('timesheet', JSON.stringify(timesheet));
+        try {
+            const response = await axios.post('http://localhost:5001/api/timesheet', timesheet);  // Ensure URL is correct
+            console.log('Data saved:', response.data);
+            alert('Timesheet submitted successfully!');
+        } catch (error) {
+            console.error('Error saving data:', error);
+            alert('Error submitting timesheet. Please try again.');
+        }
     };
 
     return (
@@ -111,4 +116,4 @@ function Timesheet() {
     );
 }
 
-export default Timesheet;
+export default TimeSheet;

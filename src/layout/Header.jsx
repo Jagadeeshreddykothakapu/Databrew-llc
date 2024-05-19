@@ -123,11 +123,11 @@ export default function Index() {
               </li>
               <li>
               <button
-               to="/timesheet"
+                  to='/employee-signup'
                   onClick={handleSignUp}
                   className="font-poppins font-medium text-blue uppercase hover:text-pink transition-colors duration-300"
                 >
-                  Employee Sign UP
+                  Employee
                 </button>
               </li>
               <li>
