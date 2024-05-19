@@ -1,5 +1,6 @@
+// src/pages/timesheet/index.jsx
 import React, { useState } from 'react';
-import axios from 'axios';
+import { submitTimesheet } from '../../api'; // Adjust the import path as necessary
 
 function TimeSheet() {
     const [timesheet, setTimesheet] = useState({
@@ -35,7 +36,7 @@ function TimeSheet() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5001/api/timesheet', timesheet);  // Ensure URL is correct
+            const response = await submitTimesheet(timesheet);
             console.log('Data saved:', response.data);
             alert('Timesheet submitted successfully!');
         } catch (error) {
