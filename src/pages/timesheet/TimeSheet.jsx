@@ -1,6 +1,5 @@
-// src/pages/timesheet/index.jsx
 import React, { useState } from 'react';
-import { submitTimesheet } from '../../api'; // Adjust the import path as necessary
+import axios from 'axios';
 
 function TimeSheet() {
     const [timesheet, setTimesheet] = useState({
@@ -36,7 +35,7 @@ function TimeSheet() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await submitTimesheet(timesheet);
+            const response = await axios.post('https://databrewbackend-bd7072927ab1.herokuapp.com/api/timesheet', timesheet);  // Update with your Heroku backend URL
             console.log('Data saved:', response.data);
             alert('Timesheet submitted successfully!');
         } catch (error) {
