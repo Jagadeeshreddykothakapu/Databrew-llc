@@ -118,18 +118,7 @@ function TimeSheet() {
       alert('Please select a past date.');
     }
   };
-{/*
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5001/api/timesheet', timesheet);
-      alert('Timesheet submitted successfully!');
-    } catch (error) {
-      console.error('Error saving data:', error);
-      alert('Error submitting timesheet. Please try again.');
-    }
-  };
-  */}
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
